@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import styled from "styled-components";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import UserContext from "../store/store";
 import axios from "axios";
 
@@ -22,6 +22,7 @@ const Styles = styled.div`
 
 export const NavigationBar = props => {
   const { user, setUser } = useContext(UserContext);
+  const history = useHistory();
 
   const logout = () => {
     if (window.confirm("Are you sure you want to logout")) {
@@ -33,7 +34,7 @@ export const NavigationBar = props => {
           weight: "",
           loggedIn: false
         });
-        window.location = "/login";
+        history.push("/login");
       });
     } else {
     }
