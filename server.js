@@ -19,9 +19,12 @@ app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
 
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
 });
 
 // We need to use sessions to keep track of our user's login status
@@ -35,8 +38,18 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
 // Requiring our routes
 require("./routes/api.js")(app);
+
+if (process.env.NODE_ENV === "production") {
+  app.get("*", function(req, res) {
+    return res.sendFile("./client/build/index.html");
+  });
+}
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(function() {
