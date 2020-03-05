@@ -1,19 +1,19 @@
-import React from 'react';
-import {Jumbotron as Jumbo, Container } from 'react-bootstrap';
-import styled from 'styled-components';
-import girlImage from '../assets/girlImage.jpeg';
+import React from "react";
+import { Jumbotron as Jumbo, Container } from "react-bootstrap";
+import styled from "styled-components";
+import girlImage from "../images/girlImage.jpeg";
 
 const Styles = styled.div`
-.jumbotron{
+  .jumbotron {
     background: url(${girlImage}) no-repeat fixed bottom;
     background-size: cover;
     color: #ccc;
     height: 200px;
     position: relative;
     z-index: -2;
-}
+  }
 
-.overlay{
+  .overlay {
     background-color: #000;
     opacity: 0.6;
     position: absolute;
@@ -22,17 +22,17 @@ const Styles = styled.div`
     bottom: 0;
     right: 0;
     z-index: -1;
-}
+  }
 `;
 
 export const Jumbotron = () => (
-<Styles>
+  <Styles>
     <Jumbo fluid className="jumbo">
-        <div className="overlay"></div>
-        <Container>
-            <h1>Welcome To ChuckFit</h1>
-            <p>Please Log In To Have Acess To All Features... It's Free!</p>
-        </Container>
+      <div className="overlay"></div>
+      <Container>
+        <h1>Welcome To Your Workout App!</h1>
+        <p>Please Log In To Have Acess To All Features... It's Free!</p>
+      </Container>
     </Jumbo>
-</Styles>
-)
+  </Styles>
+);
