@@ -2,21 +2,22 @@ const router = require("express").Router();
 const db = require("../models");
 
 module.exports = function(app) {
-  // POST route for Workouts
+
+  // CreateWorkouts
   app.post("/api/workouts", function(req, res) {
     if (!req.session.user) {
       return res.json({ error: "You should login first" });
     }
     db.Workouts.create({
       UserId: req.session.user.id,
-      body: req.body.body,
-      date: req.body.date
+      name: req.body.name,
+      //date: req.body.date
     }).then(function(dbProject) {
       res.json(dbProject);
     });
   });
 
-  // Get route Workouts
+  // Get Single Workout
   app.get("/api/workouts/:id", function(req, res) {
     if (!req.session.user) {
       return res.json({ error: "You should login first" });
@@ -28,13 +29,15 @@ module.exports = function(app) {
       },
       include: {
         model: db.Exersice,
-        include: [db.User]
+        include: [db.Exersice]
       }
     }).then(function(dbProject) {
       res.json(dbProject);
     });
   });
 
+
+  //Get all workouts
   app.get("/api/workouts", function(req, res) {
     if (!req.session.user) {
       return res.json({ error: "You should login first" });
@@ -43,10 +46,10 @@ module.exports = function(app) {
       where: {
         UserId: req.session.user.id
       },
-      include: {
-        model: db.Exersice,
-        include: [db.User]
-      }
+      // include: {
+      //   model: db.Exersice
+      //   include: [db.User]
+      // }
     }).then(function(dbProject) {
       res.json(dbProject);
     });
@@ -133,8 +136,8 @@ module.exports = function(app) {
   });
 
   //##################################################
-  // Sign-Up, Sign-in and Logout
-  app.post("/api/sign-up", function(req, res) {
+  // Create, Sign-in and Logout
+  app.post("/api/create-user", function(req, res) {
     if (!req.body.email || !req.body.password) {
       return res.json({ error: "Please fill all inputs" });
     }
@@ -161,7 +164,7 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/api/sign-in", function(req, res) {
+  app.post("/api/login", function(req, res) {
     if (!req.body.email || !req.body.password) {
       return res.json({ error: "Please fill all inputs" });
     }
@@ -182,7 +185,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/logout", function(req, res) {
+  app.get("/api/logout", function(req, res) {
     delete req.session.user;
     return res.json({ success: true });
   });
