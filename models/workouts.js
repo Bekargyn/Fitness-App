@@ -1,11 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
   var Workouts = sequelize.define("Workouts", {
-    body: {
+    name: {
       type: DataTypes.TEXT,
-      allowNull: false
-    },
-    date: {
-      type: DataTypes.DATE,
       allowNull: false
     }
   });

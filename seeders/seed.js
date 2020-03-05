@@ -7,7 +7,6 @@ module.exports = {
       [
         {
           id: 1,
-          categoryId: 1,
           category: "Arms",
           name: "Biceps Curls With Barbell",
           equipment: "Barbell",
@@ -16,7 +15,6 @@ module.exports = {
         },
         {
           id: 2,
-          categoryId: 1,
           category: "Arms",
           name: "Bench Press Narrow Grip",
           equipment: "Barbell, Bench",
@@ -25,7 +23,6 @@ module.exports = {
         },
         {
           id: 3,
-          categoryId: 1,
           category: "Arms",
           name: "Biceps Curls With Dumbbell",
           equipment: "Dumbbell",
@@ -34,7 +31,6 @@ module.exports = {
         },
         {
           id: 4,
-          categoryId: 1,
           category: "Arms",
           name: "Dips",
           equipment: "None",
@@ -43,7 +39,6 @@ module.exports = {
         },
         {
           id: 5,
-          categoryId: 1,
           category: "Arms",
           name: "push ups",
           equipment: "none (bodyweight exercise)",
@@ -52,7 +47,6 @@ module.exports = {
         },
         {
           id: 6,
-          categoryId: 2,
           category: "Legs",
           name: "Barbell Hack Squats",
           equipment: "Barbell",
@@ -60,7 +54,6 @@ module.exports = {
         },
         {
           id: 7,
-          categoryId: 2,
           category: "Legs",
           name: "Braced Squat",
           equipment: "None",
@@ -69,7 +62,6 @@ module.exports = {
         },
         {
           id: 8,
-          categoryId: 2,
           category: "Legs",
           name: "Dumbbell Lunges Walking",
           equipment: "Dumbbell",
@@ -78,7 +70,6 @@ module.exports = {
         },
         {
           id: 9,
-          categoryId: 2,
           category: "Legs",
           name: "High Knee Jumps",
           equipment: "none",
@@ -87,7 +78,6 @@ module.exports = {
         },
         {
           id: 10,
-          categoryId: 2,
           category: "Legs",
           name: "Run",
           equipment: "none",
@@ -95,7 +85,6 @@ module.exports = {
         },
         {
           id: 11,
-          categoryId: 3,
           category: "ABS",
           name: "Crunches",
           equipment: "Bench, Gym mat",
@@ -104,7 +93,6 @@ module.exports = {
         },
         {
           id: 12,
-          categoryId: 3,
           category: "ABS",
           name: "Crunches With Legs Up",
           equipment: "none",
@@ -113,7 +101,6 @@ module.exports = {
         },
         {
           id: 13,
-          categoryId: 3,
           category: "ABS",
           name: "Flutter Kicks",
           equipment: "none",
@@ -122,7 +109,6 @@ module.exports = {
         },
         {
           id: 14,
-          categoryId: 3,
           category: "ABS",
           name: "Plank",
           equipment: "none (bodyweight exercise)",
@@ -131,7 +117,6 @@ module.exports = {
         },
         {
           id: 15,
-          categoryId: 3,
           category: "ABS",
           name: "Turkish Get-Up",
           equipment: "Dumbbell",
@@ -140,7 +125,6 @@ module.exports = {
         },
         {
           id: 16,
-          categoryId: 4,
           category: "Chest",
           name: "Bench Press",
           equipment: "Barbell , Bench",
@@ -149,7 +133,6 @@ module.exports = {
         },
         {
           id: 17,
-          categoryId: 4,
           category: "Chest",
           name: "Benchpress Dumbbells",
           equipment: "Bench , Dumbbell",
@@ -158,7 +141,6 @@ module.exports = {
         },
         {
           id: 18,
-          categoryId: 4,
           category: "Chest",
           name: "Incline Pushups",
           equipment: "none",
@@ -166,7 +148,6 @@ module.exports = {
         },
         {
           id: 19,
-          categoryId: 4,
           category: "Chest",
           name: "Butterfly",
           equipment: "machine",
@@ -175,7 +156,6 @@ module.exports = {
         },
         {
           id: 20,
-          categoryId: 4,
           category: "Chest",
           name: "Upper External Oblique",
           equipment: "Pull-up bar",
@@ -183,7 +163,6 @@ module.exports = {
         },
         {
           id: 21,
-          categoryId: 5,
           category: "Back",
           name: "Bent Over Rowing",
           equipment: "Barbell",
@@ -192,7 +171,6 @@ module.exports = {
         },
         {
           id: 22,
-          categoryId: 5,
           category: "Back",
           name: "Chin-ups",
           equipment: "Pull-up bar",
@@ -200,7 +178,6 @@ module.exports = {
         },
         {
           id: 23,
-          categoryId: 5,
           category: "Back",
           name: "Hyperextensions",
           equipment: "none",
@@ -209,7 +186,6 @@ module.exports = {
         },
         {
           id: 24,
-          categoryId: 5,
           category: "Back",
           name: "Long-Pulley (low Row)",
           equipment: "machine",
@@ -218,7 +194,6 @@ module.exports = {
         },
         {
           id: 25,
-          categoryId: 5,
           category: "BAck",
           name: "Superman",
           equipment: "Gym mat",
@@ -227,7 +202,6 @@ module.exports = {
         },
         {
           id: 26,
-          categoryId: 6,
           category: "Shoulders",
           name: "Bent High Pulls",
           equipment: "Dumbbell",
@@ -236,7 +210,6 @@ module.exports = {
         },
         {
           id: 27,
-          categoryId: 6,
           category: "Shoulders",
           name: "Front Raises",
           equipment: "Barbell , Dumbbell",
@@ -245,7 +218,6 @@ module.exports = {
         },
         {
           id: 28,
-          categoryId: 6,
           category: "Shoulders",
           name: "High Pull",
           equipment: "none",
@@ -254,7 +226,6 @@ module.exports = {
         },
         {
           id: 29,
-          categoryId: 6,
           category: "Shoulders",
           name: "Lateral Raises",
           equipment: "Dumbbell",
@@ -262,7 +233,6 @@ module.exports = {
         },
         {
           id: 30,
-          categoryId: 6,
           category: "Shoulders",
           name: "TWall Handstand",
           equipment: "none (bodyweight exercise)",
@@ -271,7 +241,6 @@ module.exports = {
         },
         {
           id: 31,
-          categoryId: 7,
           category: "Calves",
           name: "Calf Press Using Leg Press Machine",
           equipment: "Machine",
@@ -280,7 +249,6 @@ module.exports = {
         },
         {
           id: 32,
-          categoryId: 7,
           category: "Calves",
           name: "Calf Raises on Hackenschmitt Machine",
           equipment: "Machine",
@@ -289,7 +257,6 @@ module.exports = {
         },
         {
           id: 33,
-          categoryId: 7,
           category: "Calves",
           name: "Sitting Calf Raises",
           equipment: "none",
@@ -298,7 +265,6 @@ module.exports = {
         },
         {
           id: 34,
-          categoryId: 7,
           category: "Calves",
           name: "Skipping - Standard",
           equipment: "none (bodyweight exercise)",
@@ -307,7 +273,6 @@ module.exports = {
         },
         {
           id: 35,
-          categoryId: 7,
           category: "Calves",
           name: "TStanding Calf Raises",
           equipment: "none (bodyweight exercise)",

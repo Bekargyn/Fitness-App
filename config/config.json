@@ -3,6 +3,10 @@
     "dialect": "mysql",
     "use_env_variable": "LOCALDB_URL"
   },
+  "developer": {
+    "dialect": "mysql",
+    "use_env_variable": "LOCALDB_URL"
+  },
   "test": {
     "username": "root",
     "password": null,
@@ -12,6 +16,6 @@
   },
   "production": {
     "dialect": "mysql",
-    "use_env_variable": "JAWSDB_URL"
+    "use_env_variable": "LOCALDB_URL"
   }
 }
