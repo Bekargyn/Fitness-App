@@ -219,7 +219,7 @@ module.exports = {
         {
           id: 25,
           categoryId: 5,
-          category: "Back",
+          category: "BAck",
           name: "Superman",
           equipment: "Gym mat",
           description:

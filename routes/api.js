@@ -133,8 +133,8 @@ module.exports = function(app) {
   });
 
   //##################################################
-  // Create, Sign-in and Logout
-  app.post("/api/create-user", function(req, res) {
+  // Sign-Up, Sign-in and Logout
+  app.post("/api/sign-up", function(req, res) {
     if (!req.body.email || !req.body.password) {
       return res.json({ error: "Please fill all inputs" });
     }
@@ -161,7 +161,7 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/api/login", function(req, res) {
+  app.post("/api/sign-in", function(req, res) {
     if (!req.body.email || !req.body.password) {
       return res.json({ error: "Please fill all inputs" });
     }

@@ -1,19 +1,19 @@
-import React from "react";
-import { Jumbotron as Jumbo } from "react-bootstrap";
-import styled from "styled-components";
-import girlImageBottom from "../images/girlImage.jpeg";
+import React from 'react';
+import {Jumbotron as Jumbo} from 'react-bootstrap';
+import styled from 'styled-components';
+import girlImageBottom from '../assets/girlImage.jpeg';
 
 const Styles = styled.div`
-  .jumbotron {
+.jumbotron{
     background: url(${girlImageBottom}) no-repeat fixed bottom;
     background-size: cover;
     color: #ccc;
     height: 200px;
     position: relative;
     z-index: -2;
-  }
+}
 
-  .overlay {
+.overlay{
     background-color: #000;
     opacity: 0.6;
     position: absolute;
@@ -22,13 +22,13 @@ const Styles = styled.div`
     bottom: 0;
     right: 0;
     z-index: -3;
-  }
+}
 `;
 
 export const JumbotronBottom = () => (
-  <Styles>
+<Styles>
     <Jumbo fluid className="jumbo">
-      <div className="overlay"></div>
+        <div className="overlay"></div>
     </Jumbo>
-  </Styles>
-);
+</Styles>
+)
