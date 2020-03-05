@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Button, Form, Col, Accordion, Card } from "react-bootstrap";
 import axios from "axios";
+import { UserContext } from "../userContext";
 
-export const Login = props => {
+export const Login = () => {
+  const [user, setUser] = useContext(UserContext);
   const [formValues, setFormValues] = useState({
     name: "",
     email: "",
@@ -20,7 +22,7 @@ export const Login = props => {
     e.preventDefault();
     axios({
       method: "post",
-      url: "http://localhost:8080/api/create-user",
+      url: "/api/sign-up",
       data: {
         email: formValues.email,
         password: formValues.password,
@@ -30,13 +32,13 @@ export const Login = props => {
       }
     }).then(data => {
       if (!data.error) {
-        // props.setUser
+        setFormValues(data);
       }
     });
   };
 
   return (
-    <div class="Whole-page">
+    <div className="Whole-page">
       <Accordion>
         <Card>
           <Card.Header>

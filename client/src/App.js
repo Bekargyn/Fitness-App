@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Workouts } from "./pages/Workouts";
@@ -11,10 +11,11 @@ import { Layout } from "./components/layout";
 import { NavigationBar } from "./components/NavigationBar";
 import { Jumbotron } from "./components/Jumbotron";
 import { JumbotronBottom } from "./components/JumbotronBottom";
-import { globalUserState } from "./store/store";
+import { UserContext } from "./userContext";
 
 function App() {
-  const [user, setUser] = globalUserState();
+  const [user, setUser] = useState({ name: "test" });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <React.Fragment>
@@ -24,19 +25,21 @@ function App() {
       <Layout>
         <Router>
           <Switch>
-            <Route exact path="/" component={Home} />
-            <PrivateRoute
-              isLoggedIn={user.loggedIn}
-              exact
-              path="/workouts"
-              component={Workouts}
-            />
-            <Route exact path="/exercises" component={Exercises} />
-            <Route exact path="/nutrition" component={Nutrition} />
-            <Route exact path="/login">
-              <Login user={user} setUser={setUser} />
-            </Route>
-            <Route component={NoMatch} />
+            <UserContext.Provider value={[user, setUser]}>
+              <Route exact path="/" component={Home} />
+              <PrivateRoute
+                isLoggedIn={user.loggedIn}
+                exact
+                path="/workouts"
+                component={Workouts}
+              />
+              <Route exact path="/exercises" component={Exercises} />
+              <Route exact path="/nutrition" component={Nutrition} />
+              <Route exact path="/login">
+                <Login />
+              </Route>
+              <Route component={NoMatch} />
+            </UserContext.Provider>
           </Switch>
         </Router>
       </Layout>
