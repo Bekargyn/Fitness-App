@@ -52,6 +52,45 @@ module.exports = function(app) {
     });
   });
 
+  // ############################
+  // Get route NUTRITION
+  app.get("/api/nutrition", function(req, res) {
+    if (!req.session.user) {
+      return res.json({ error: "You should login first" });
+    }
+    db.Nutrition.findAll({
+      where: {
+        UserId: req.session.user.id
+      }
+    }).then(function(dbNutrition) {
+      res.json(dbNutrition);
+    });
+  });
+
+  app.get("/api/nutrition/:id", function(req, res) {
+    db.Nutrition.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: {
+        include: [db.User]
+      }
+    }).then(function(dbNutrition) {
+      res.json(dbNutrition);
+    });
+  });
+
+  //  POST Nutrition
+  app.post("/api/nutrition", function(req, res) {
+    db.Nutrition.create({
+      food: req.body.food,
+      calories: req.body.calories
+    }).then(function(dbNutrition) {
+      res.json(dbNutrition);
+    });
+  });
+  // ##########################
+
   //  POST Exercise
   app.post("/api/exercise", function(req, res) {
     db.Exercise.create({
@@ -94,6 +133,7 @@ module.exports = function(app) {
   });
 
   //##################################################
+  // Create, Sign-in and Logout
   app.post("/api/create-user", function(req, res) {
     if (!req.body.email || !req.body.password) {
       return res.json({ error: "Please fill all inputs" });
