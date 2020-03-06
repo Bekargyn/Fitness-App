@@ -26,7 +26,7 @@ export const Form = (props) => {
       }
     }).then(data=>{
       if (!data.data.error){
-        props.setShowForm(false);
+        props.setCurrentPage(0);
       }else{
         setError(data.data.error);
       }
@@ -38,6 +38,14 @@ export const Form = (props) => {
 
   return (
   <div className="form">
+    <div className="header">
+      <h1>
+        Add Workouts
+        <div onClick={()=>props.setCurrentPage(0)} className="btn btn-danger float-right">
+          Cancel
+        </div>
+      </h1>
+    </div>
     <div className="form-group">
       <label htmlFor="" className="form-label">Name</label>
       <input onChange={onChange} name="name" className="form-control"/>

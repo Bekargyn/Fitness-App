@@ -20,7 +20,7 @@ const Styles = styled.div`
   }
 `;
 
-export const NavigationBar = props => {
+export const NavigationBar = () => {
   const { user, setUser } = useContext(UserContext);
   const history = useHistory();
 
@@ -43,7 +43,7 @@ export const NavigationBar = props => {
   return (
     <Styles>
       <Navbar expand="lg">
-        <Link to={"/login"} className={"navbar-brand"}>
+        <Link to={"/"} className={"navbar-brand"}>
           StartFitness
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
