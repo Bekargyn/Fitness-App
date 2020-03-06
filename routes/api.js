@@ -26,10 +26,10 @@ module.exports = function(app) {
         id: req.params.id,
         UserId: req.session.user.id
       },
-      include: {
-        model: db.Exersice,
-        include: [db.Exersice]
-      }
+      include: [{
+        model: db.Exercise,
+        as: "exercises"
+      }]
     }).then(function(dbProject) {
       res.json(dbProject);
     });
@@ -51,6 +51,34 @@ module.exports = function(app) {
 
   // #######################
   // Delete workout
+  app.post("/api/workouts/delete", (req, res) => {
+    //remove from pivot table
+    db.ExerciseWorkout.destroy({
+      where: {
+        WorkoutId: req.body.id
+      }
+    })
+    .then(()=>{
+      //###########################
+      //Removing from main table
+      db.Workouts.destroy({
+        where: {
+          id: req.body.id
+        }
+      })
+      .then(dbWorkouts => {
+        res.json({success: true});
+      })
+      .catch(err => {
+        res.status(400).json(err);
+      });
+      //############################
+    })
+    .catch(err => {
+      res.status(400).json(err);
+    });
+
+  });
 
   // ############################
   // Get route NUTRITION
@@ -103,14 +131,34 @@ module.exports = function(app) {
 
   // Get route for EXERCISES
   app.get("/api/exercise/:id", function(req, res) {
-    db.Workouts.findOne({
+    db.Exercise.findOne({
       where: {
         id: req.params.id
-      },
-      include: {
-        include: [db.User]
       }
     }).then(function(dbProject) {
+      res.json(dbProject);
+    });
+  });
+
+  // Search EXERCISES
+  app.post("/api/search-exercise/", function(req, res) {
+    let searchParams = {};
+    if(req.body.category){
+      searchParams.category = req.body.category;
+    }
+    db.Exercise.findAll({
+      where: {
+        ...searchParams
+      }
+    }).then(function(dbProject) {
+      res.json(dbProject);
+    });
+  });
+
+  // Get route for EXERCISES
+  app.get("/api/exercise-category", function(req, res) {
+    db.Exercise.aggregate('category', 'DISTINCT', { plain: false })
+    .then(function(dbProject) {
       res.json(dbProject);
     });
   });
@@ -118,13 +166,31 @@ module.exports = function(app) {
   // ############################
   //  Creating API-routes for ExerciseWorkouts
 
+
+
+  app.post("/api/exercise-workouts/delete", function(req, res) {
+    db.ExerciseWorkout.destroy({
+      where: {
+        ExerciseId: req.body.ExerciseId,
+        WorkoutId: req.body.WorkoutId
+      }
+    }).then(dbWorkouts => {
+      res.json({success: true});
+    })
+    .catch(err => {
+      res.status(400).json(err);
+    });
+  });
   app.post("/api/exercise-workouts", function(req, res) {
     if (!req.session.user) {
       return res.json({ error: "You should login first" });
     }
+    if(!(req.body.WorkoutId && req.body.ExerciseId)){
+      return res.json({ error: "Select Exercise" });
+    }
     db.ExerciseWorkout.create({
-      sets: req.body.sets,
-      repeats: req.body.repeats,
+      sets: req.body.sets ? req.body.sets : 0,
+      repeats: req.body.repeats ? req.body.repeats : 0,
       WorkoutId: req.body.WorkoutId,
       ExerciseId: req.body.ExerciseId
     }).then(function(dbProject) {
