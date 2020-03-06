@@ -45,7 +45,7 @@ export const NavigationBar = (props) => {
   return (
   <Styles>
     <Navbar expand="lg">
-      <Link to={"/workouts"} className={"navbar-brand"}>FitnessHelper</Link>
+      <Link to={"/"} className={"navbar-brand"}>FitnessHelper</Link>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar.nav">
         <Nav className="ml-auto">

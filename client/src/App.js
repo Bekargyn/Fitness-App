@@ -10,7 +10,6 @@ import {PrivateRoute} from "./pages/PrivateRoutes";
 import {Layout} from "./components/layout";
 import {NavigationBar} from "./components/NavigationBar";
 import {Jumbotron} from "./components/Jumbotron";
-import {JumbotronBottom} from "./components/JumbotronBottom";
 import UserContext from "./store/store"
 
 function App() {
@@ -48,9 +47,7 @@ function App() {
 
                     <br></br>
                     <br></br>
-                    <div className="position-relative">
-                        <JumbotronBottom/>
-                    </div>
+                
                     </Router>
                 </UserContext.Provider>
             </React.Fragment>

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import girlImage from "../assets/girlImage.jpeg";
 
 const Styles = styled.div`
-  .jumbotron {
+  .jumbo{
     background: url(${girlImage}) no-repeat fixed bottom;
     background-size: cover;
     color: #ccc;
@@ -22,17 +22,18 @@ const Styles = styled.div`
     bottom: 0;
     right: 0;
     z-index: -1;
+    overflow: auto;
   }
 `;
 
 export const Jumbotron = () => (
   <Styles>
-    <Jumbo fluid className="jumbo">
+    <div fluid className="jumbo">
       <div className="overlay"></div>
       <Container>
         <h1>Welcome To Your Personal Workout App!</h1>
         <p>Please Log In To Have Acess To All Features... It's Free!</p>
       </Container>
-    </Jumbo>
+    </div>
   </Styles>
 );
