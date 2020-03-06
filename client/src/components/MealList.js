@@ -21,7 +21,7 @@ export default class MealList extends React.Component {
 
                                         </Col>
                                         <Col sm={8}>
-                                            <Row><h5>{meal.strMeal}</h5></Row>
+                                            <Row><h1>{meal.strMeal}</h1></Row>
                                             {/* <Row><h6>{exercise.category}</h6></Row> */}
                                         </Col>
                                     </Row>

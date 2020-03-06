@@ -58,7 +58,7 @@ export const NavigationBar = props => {
           <Nav.Item>
             <Link to={"/nutrition"} className={"nav-link"}>Nutrition</Link>
           </Nav.Item>
-          {user.loggedIn?
+        
             <Nav.Item>
               <Link to={"/exercises"} className={"nav-link"}>
                 Exercises
@@ -69,7 +69,7 @@ export const NavigationBar = props => {
                 Nutrition
               </Link>
             </Nav.Item>
-            {user.loggedIn ? (
+         
               <Nav.Item>
                 <Nav.Link onClick={logout}>{user.name}</Nav.Link>
               </Nav.Item>
@@ -79,7 +79,7 @@ export const NavigationBar = props => {
                   Login
                 </Link>
               </Nav.Item>
-            )}
+            
           </Nav>
         </Navbar.Collapse>
       </Navbar>
