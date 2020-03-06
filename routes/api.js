@@ -2,7 +2,6 @@ const router = require("express").Router();
 const db = require("../models");
 
 module.exports = function(app) {
-
   // CreateWorkouts
   app.post("/api/workouts", function(req, res) {
     if (!req.session.user) {
@@ -10,7 +9,7 @@ module.exports = function(app) {
     }
     db.Workouts.create({
       UserId: req.session.user.id,
-      name: req.body.name,
+      name: req.body.name
       //date: req.body.date
     }).then(function(dbProject) {
       res.json(dbProject);
@@ -36,7 +35,6 @@ module.exports = function(app) {
     });
   });
 
-
   //Get all workouts
   app.get("/api/workouts", function(req, res) {
     if (!req.session.user) {
@@ -45,15 +43,14 @@ module.exports = function(app) {
     db.Workouts.findAll({
       where: {
         UserId: req.session.user.id
-      },
-      // include: {
-      //   model: db.Exersice
-      //   include: [db.User]
-      // }
+      }
     }).then(function(dbProject) {
       res.json(dbProject);
     });
   });
+
+  // #######################
+  // Delete workout
 
   // ############################
   // Get route NUTRITION

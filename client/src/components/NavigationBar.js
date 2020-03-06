@@ -1,8 +1,8 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import styled from "styled-components";
-import { Link, Redirect } from "react-router-dom";
-import UserContext from "../store/store"
+import { Link, Redirect, useHistory } from "react-router-dom";
+import UserContext from "../store/store";
 import axios from "axios";
 
 const Styles = styled.div`
@@ -20,13 +20,13 @@ const Styles = styled.div`
   }
 `;
 
-export const NavigationBar = (props) => {
+export const NavigationBar = props => {
+  const { user, setUser } = useContext(UserContext);
+  const history = useHistory();
 
-  const {user, setUser} = useContext(UserContext);
-
-  const logout = ()=>{
-    if(window.confirm("Are you sure you want to logout")){
-      axios.get("/api/logout").then(()=>{
+  const logout = () => {
+    if (window.confirm("Are you sure you want to logout")) {
+      axios.get("/api/logout").then(() => {
         setUser({
           name: "Guest",
           email: "",
@@ -34,15 +34,14 @@ export const NavigationBar = (props) => {
           weight: "",
           loggedIn: false
         });
-        window.location = '/login';
+        history.push("/login");
       });
-
-    }else{
-
+    } else {
     }
   };
 
   return (
+<<<<<<< HEAD
   <Styles>
     <Navbar expand="lg">
       <Link to={"/"} className={"navbar-brand"}>FitnessHelper</Link>
@@ -61,16 +60,45 @@ export const NavigationBar = (props) => {
             <Link to={"/nutrition"} className={"nav-link"}>Nutrition</Link>
           </Nav.Item>
           {user.loggedIn?
+=======
+    <Styles>
+      <Navbar expand="lg">
+        <Link to={"/login"} className={"navbar-brand"}>
+          StartFitness
+        </Link>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar.nav">
+          <Nav className="ml-auto">
             <Nav.Item>
-              <Nav.Link onClick={logout}>{user.name}</Nav.Link>
+              <Link to={"/workouts"} className={"nav-link"}>
+                Workouts
+              </Link>
             </Nav.Item>
-          :
+>>>>>>> master
             <Nav.Item>
-              <Link to={"/login"} className={"nav-link"}>Login</Link>
+              <Link to={"/exercises"} className={"nav-link"}>
+                Exercises
+              </Link>
             </Nav.Item>
-          }
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
-  </Styles>
-)};
+            <Nav.Item>
+              <Link to={"/nutrition"} className={"nav-link"}>
+                Nutrition
+              </Link>
+            </Nav.Item>
+            {user.loggedIn ? (
+              <Nav.Item>
+                <Nav.Link onClick={logout}>{user.name}</Nav.Link>
+              </Nav.Item>
+            ) : (
+              <Nav.Item>
+                <Link to={"/login"} className={"nav-link"}>
+                  Login
+                </Link>
+              </Nav.Item>
+            )}
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    </Styles>
+  );
+};
