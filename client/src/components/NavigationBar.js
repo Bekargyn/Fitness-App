@@ -41,7 +41,6 @@ export const NavigationBar = props => {
   };
 
   return (
-<<<<<<< HEAD
   <Styles>
     <Navbar expand="lg">
       <Link to={"/"} className={"navbar-brand"}>FitnessHelper</Link>
@@ -60,21 +59,6 @@ export const NavigationBar = props => {
             <Link to={"/nutrition"} className={"nav-link"}>Nutrition</Link>
           </Nav.Item>
           {user.loggedIn?
-=======
-    <Styles>
-      <Navbar expand="lg">
-        <Link to={"/login"} className={"navbar-brand"}>
-          StartFitness
-        </Link>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar.nav">
-          <Nav className="ml-auto">
-            <Nav.Item>
-              <Link to={"/workouts"} className={"nav-link"}>
-                Workouts
-              </Link>
-            </Nav.Item>
->>>>>>> master
             <Nav.Item>
               <Link to={"/exercises"} className={"nav-link"}>
                 Exercises
