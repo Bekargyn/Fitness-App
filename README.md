@@ -1,6 +1,6 @@
 ## Fitness Helper
 
-This Web-site helps User to pick a exercises and create own workouts. User needs to sign-up to keep tracking workouts or favorite exercises in Database. Exercises has categories , which makes this app easy to use even for beginners. Simple to use, but very helpful App to stay healthy.
+This Web-site helps Users to pick exercises and create their own workouts. User needs to sign-up to keep tracking workouts or favorite exercises in Database. Exercises has categories , which makes this app easy to use even for beginners. Simple to use, but very helpful App to stay healthy.
 
 ## Links to:
 
