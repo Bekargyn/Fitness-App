@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import styled from "styled-components";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import UserContext from "../store/store";
 import axios from "axios";
 
@@ -32,7 +32,7 @@ export const NavigationBar = () => {
           email: "",
           age: "",
           weight: "",
-          loggedIn: false
+          loggedIn: false,
         });
         history.push("/login");
       });
