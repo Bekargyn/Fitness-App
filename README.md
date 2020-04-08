@@ -13,6 +13,7 @@ This Web-site helps Users to pick exercises and create their own workouts. User 
 7. To add exercises click on name of workout, then click "add exercises"
 8. User can delete unwanted exercises
 9. Nutrition - WIP
+10. To test the app I created User, so you can use this email and password to Sign-in: email:fitness@mail.com, password:password
 
 ## Links to:
 
