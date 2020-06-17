@@ -1,13 +1,12 @@
 import React from "react";
 import { Container, Card, ListGroup, Row, Col, Image } from "react-bootstrap";
-import axios from "axios";
 
-const ExerciseList = props => {
+const ExerciseList = (props) => {
   return (
     <div>
       <Card>
         <ListGroup varient="flush">
-          {props.exercises.map(el => (
+          {props.exercises.map((el) => (
             <ListGroup.Item>
               <Container>
                 <Row>

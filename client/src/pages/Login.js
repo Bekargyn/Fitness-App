@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import UserContext from "../store/store";
 
-export const Login = props => {
+export const Login = (props) => {
   const { user, setUser } = useContext(UserContext);
 
   const [error, setError] = useState();
@@ -14,15 +14,15 @@ export const Login = props => {
     email: "",
     password: "",
     age: "",
-    weight: ""
+    weight: "",
   });
 
-  const onChange = e => {
+  const onChange = (e) => {
     formValues[e.target.name] = e.target.value;
     setFormValues(formValues);
   };
 
-  const onSignUp = e => {
+  const onSignUp = (e) => {
     e.preventDefault();
     axios({
       method: "post",
@@ -32,9 +32,9 @@ export const Login = props => {
         password: formValues.password,
         age: formValues.age,
         name: formValues.name,
-        weight: formValues.weight
-      }
-    }).then(data => {
+        weight: formValues.weight,
+      },
+    }).then((data) => {
       if (!data.data.error) {
         let currentUser = data.data;
         currentUser.loggedIn = true;
@@ -46,16 +46,16 @@ export const Login = props => {
     });
   };
 
-  const onLogin = e => {
+  const onLogin = (e) => {
     e.preventDefault();
     axios({
       method: "post",
       url: "/api/login",
       data: {
         email: formValues.email,
-        password: formValues.password
-      }
-    }).then(data => {
+        password: formValues.password,
+      },
+    }).then((data) => {
       if (!data.data.error) {
         let currentUser = data.data;
         currentUser.loggedIn = true;
@@ -104,7 +104,6 @@ export const Login = props => {
                       placeholder="Password"
                     />
                   </Form.Group>
-
                   {error && (
                     <div className="row">
                       <div className="col-12">
@@ -112,7 +111,6 @@ export const Login = props => {
                       </div>
                     </div>
                   )}
-
                   <Button variant="primary" onClick={onLogin} type="submit">
                     Sign In
                   </Button>
@@ -124,7 +122,7 @@ export const Login = props => {
         <Card>
           <Card.Header onClick={clearError}>
             <Accordion.Toggle as={Button} variant="link" eventKey="1">
-              Sign Up{" "}
+              Sign Up
             </Accordion.Toggle>
           </Card.Header>
           <Accordion.Collapse eventKey="1">
