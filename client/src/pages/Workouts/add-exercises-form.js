@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Container, Card, ListGroup, Row, Col, Image } from "react-bootstrap";
 import axios from "axios";
 
 //List of exercise
-export const AddExercise = props => {
+export const AddExercise = (props) => {
   const [formValues, setFormValues] = useState({});
 
   const [error, setError] = useState();
   const [category, setCategory] = useState("");
   const [exercises, setExercises] = useState();
 
-  const onChange = e => {
+  const onChange = (e) => {
     formValues[e.target.name] = e.target.value;
     setFormValues(formValues);
   };
 
-  const getListOfEx = e => {
+  const getListOfEx = (e) => {
     if (!e.target.value) {
       setExercises([]);
       return;
@@ -24,9 +23,9 @@ export const AddExercise = props => {
       method: "post",
       url: "/api/search-exercise/",
       data: {
-        category: e.target.value
-      }
-    }).then(data => {
+        category: e.target.value,
+      },
+    }).then((data) => {
       setExercises(data.data);
     });
   };
@@ -38,9 +37,9 @@ export const AddExercise = props => {
       url: "/api/exercise-workouts",
       data: {
         ...formValues,
-        WorkoutId: props.currentWorkout.id
-      }
-    }).then(data => {
+        WorkoutId: props.currentWorkout.id,
+      },
+    }).then((data) => {
       if (!data.data.error) {
         props.setCurrentPage("signle-workout");
       } else {
@@ -50,7 +49,7 @@ export const AddExercise = props => {
   };
 
   useEffect(() => {
-    axios.get("/api/exercise-category").then(data => {
+    axios.get("/api/exercise-category").then((data) => {
       setCategory(Array.isArray(data.data) ? data.data : []);
     });
   }, []);
@@ -75,7 +74,7 @@ export const AddExercise = props => {
           </label>
           <select className="form-control" onChange={getListOfEx}>
             <option value="">Select Category</option>
-            {category.map(el => (
+            {category.map((el) => (
               <option key={el.DISTINCT} value={el.DISTINCT}>
                 {el.DISTINCT}
               </option>
@@ -95,7 +94,7 @@ export const AddExercise = props => {
               onChange={onChange}
             >
               <option value="">Select Exercise</option>
-              {exercises.map(el => (
+              {exercises.map((el) => (
                 <option key={el.id} value={el.id}>
                   {el.name}
                 </option>
