@@ -1,122 +1,61 @@
 import React, { useState, useEffect } from "react";
-import {
-  Nav,
-  Container,
-  Card,
-  ListGroup,
-  Row,
-  Col,
-  Image
-} from "react-bootstrap";
-import axios from 'axios';
-import ExerciseList from '../components/ExerciseList'
-
+import { Nav } from "react-bootstrap";
+import axios from "axios";
+import ExerciseList from "../components/ExerciseList";
 
 export function Exercises() {
-  const [exercisesState, setExercisesState] = useState([]);
-  const [category, setCategory] = useState(8);
+  const [exercises, setExercises] = useState();
+  const [category, setCategory] = useState([]);
   useEffect(() => {
-      // For demonstration purposes, we mock an API call.
-      axios.get('https://wger.de/api/v2/exercise/?limit=700')
-  .then(res => {
-      setExercisesState(res.data.results);
-      });
-  //   }, []);
-  }, [category]);
+    axios.get("/api/exercise-category").then((data) => {
+      setCategory(Array.isArray(data.data) ? data.data : []);
+      if (data.data) {
+        getListOfEx(data.data[0].DISTINCT);
+      }
+    });
+  }, []);
 
-
-
+  const getListOfEx = (val) => {
+    if (!val) {
+      setExercises([]);
+      return;
+    }
+    axios({
+      method: "post",
+      url: "/api/search-exercise/",
+      data: {
+        category: val,
+      },
+    }).then((data) => {
+      setExercises(data.data);
+    });
+  };
 
   return (
-      <div class="Whole-page">
-          <div class="header">
-              <h1>Exercises</h1>
-          </div>
-          <div>
-              <Nav variant="tabs" defaultActiveKey="link-arms">
-                  <Nav.Item>
-                      <Nav.Link eventKey="link-arms" onClick={() => setCategory(8)}>Arms</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                      <Nav.Link eventKey="link-legs" onClick={() => setCategory(9)}>Legs</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                      <Nav.Link eventKey="link-abs" onClick={() => setCategory(10)}>Abs</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                      <Nav.Link eventKey="link-chest" onClick={() => setCategory(11)}>Chest</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                      <Nav.Link eventKey="link-back" onClick={() => setCategory(12)}>Back</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                      <Nav.Link eventKey="link-shoulders" onClick={() => setCategory(13)}>Shoulders</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                      <Nav.Link eventKey="link-calves" onClick={() => setCategory(14)}>Calves</Nav.Link>
-                  </Nav.Item>
-
-              </Nav>
-              <ExerciseList />
-
-          </div>
-
+    <div className="Whole-page">
+      <div className="header">
+        <h1>Exercises</h1>
       </div>
-  )
+      {category && category.length && (
+        <div>
+          <Nav variant="tabs" defaultActiveKey={category[0].DISTINCT}>
+            {category.map((el) => (
+              <Nav.Item>
+                <Nav.Link
+                  key={el.DISTINCT}
+                  eventKey={el.DISTINCT}
+                  onClick={() => getListOfEx(el.DISTINCT)}
+                >
+                  {el.DISTINCT}
+                </Nav.Link>
+              </Nav.Item>
+            ))}
+          </Nav>
+          {exercises && <ExerciseList exercises={exercises} />}
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default Exercises;
-
-// export const Exercises = () => (
-//   <div className="Whole-page">
-//     <div className="header">
-//       <h1>Exercises</h1>
-//     </div>
-//     <div>
-//       <Nav variant="tabs" defaultActiveKey="link-arms">
-//         <Nav.Item>
-//           <Nav.Link eventKey="link-arms">Arms</Nav.Link>
-//         </Nav.Item>
-//         <Nav.Item>
-//           <Nav.Link eventKey="link-legs">Legs</Nav.Link>
-//         </Nav.Item>
-//         <Nav.Item>
-//           <Nav.Link eventKey="link-abs">Abs</Nav.Link>
-//         </Nav.Item>
-//         <Nav.Item>
-//           <Nav.Link eventKey="link-chest">Chest</Nav.Link>
-//         </Nav.Item>
-//         <Nav.Item>
-//           <Nav.Link eventKey="link-back">Back</Nav.Link>
-//         </Nav.Item>
-//         <Nav.Item>
-//           <Nav.Link eventKey="link-shoulders">Shoulders</Nav.Link>
-//         </Nav.Item>
-//         <Nav.Item>
-//           <Nav.Link eventKey="link-calves">Calves</Nav.Link>
-//         </Nav.Item>
-//       </Nav>
-//       <Card>
-//         <ListGroup varient="flush">
-//           <ListGroup.Item>
-//             <Container>
-//               <Row>
-//                 <Col sm={4}>
-//                   <Image src="holder.js/171x180" thumbnail />
-//                 </Col>
-//                 <Col sm={8}>
-//                   <Row>
-//                     <h5>Exercise Name</h5>
-//                   </Row>
-//                   <Row>
-//                     <h6>Exercise Equipment</h6>
-//                   </Row>
-//                 </Col>
-//               </Row>
-//             </Container>
-//           </ListGroup.Item>
-//         </ListGroup>
-//       </Card>
-//     </div>
-//   </div>
-// );
