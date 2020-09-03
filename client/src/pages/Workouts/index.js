@@ -1,27 +1,41 @@
-import  React, {useEffect, useState} from "react";
-import { Container, Card, ListGroup, Row, Col, Image } from "react-bootstrap";
-import axios from "axios";
-import {List} from "./list";
-import {Form} from "./form";
+import React, { useEffect, useState } from "react";
+import { List } from "./list";
+import { Form } from "./form";
+import { SingleWorkout } from "./single-workout";
+import { AddExercise } from "./add-exercises-form";
 
 export const Workouts = () => {
+  const [currentPage, setCurrentPage] = useState(0);
+  const [currentWorkout, setCurrentWorkout] = useState(0);
 
-  const [showForm, setShowForm] = useState(0);
-
-  const toggleForm = () => {
-    setShowForm(!showForm);
-  };
+  let title = "Workouts";
 
   return (
-  <div className="Whole-page">
-    {/* if signed in display this but if not display please sign in */}
-    <div className="header">
-      <h1>Workouts  <div onClick={toggleForm} className="btn btn-success float-right">Add</div></h1>
+    <div className="Whole-page">
+      <div className="header">
+        <h1></h1>
+      </div>
+      {!currentPage && (
+        <List
+          setCurrentPage={setCurrentPage}
+          setCurrentWorkout={setCurrentWorkout}
+        />
+      )}
+      {currentPage == "add-workouts" && (
+        <Form setCurrentPage={setCurrentPage} />
+      )}
+      {currentPage == "signle-workout" && (
+        <SingleWorkout
+          currentWorkout={currentWorkout}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
+      {currentPage == "add-exercise" && (
+        <AddExercise
+          currentWorkout={currentWorkout}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
     </div>
-    {!showForm?
-    <List/>
-            :
-    <Form setShowForm={setShowForm}/>
-    }
-  </div>
-)};
+  );
+};

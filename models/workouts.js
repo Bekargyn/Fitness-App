@@ -13,7 +13,8 @@ module.exports = function(sequelize, DataTypes) {
       }
     });
     Workouts.belongsToMany(models.Exercise, {
-      through: "ExerciseWorkout"
+      through: "ExerciseWorkout",
+      as: "exercises"
     });
   };
 
