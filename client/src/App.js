@@ -19,7 +19,7 @@ function App() {
     email: "",
     age: "",
     weight: "",
-    loggedIn: false
+    loggedIn: false,
   });
 
   return (
@@ -28,7 +28,6 @@ function App() {
         <Router>
           <NavigationBar />
           <Jumbotron />
-          <br></br>
           <Layout>
             <Switch>
               <Route exact path="/" component={Home} />
@@ -44,8 +43,6 @@ function App() {
               <Route component={NoMatch} />
             </Switch>
           </Layout>
-          <br></br>
-          <br></br>
           <div className="position-relative">
             <JumbotronBottom />
           </div>

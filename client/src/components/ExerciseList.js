@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Card, ListGroup, Row, Col, Image } from "react-bootstrap";
+import { Container, Card, ListGroup, Row, Col } from "react-bootstrap";
 
 const ExerciseList = (props) => {
   return (
