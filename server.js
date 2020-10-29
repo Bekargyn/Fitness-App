@@ -36,17 +36,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/public"));
+  app.use(express.static("client/build"));
 }
 
 // Requiring our routes
 require("./routes/api.js")(app);
-
-if (process.env.NODE_ENV === "production") {
-  app.get("*", function (req, res) {
-    return res.sendFile("./client/public/index.html");
-  });
-}
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(function () {
