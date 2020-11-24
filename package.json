@@ -1,5 +1,5 @@
 {
-  "name": "project-2-group-4",
+  "name": "project-3",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -9,7 +9,8 @@
     "watch": "nodemon server.js",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "homepage": "/"
   },
   "keywords": [],
   "author": "",
